@@ -21,6 +21,18 @@ public class Events {
     @JoinColumn(name = "type_id")
     private EventTypes type;
 
+    public Events(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, Locations location, EventTypes type) {
+        this.name = name;
+        this.description = description;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.location = location;
+        this.type = type;
+    }
+
+    public Events(){
+
+    }
     public Long getEvent_id() {
         return event_id;
     }
