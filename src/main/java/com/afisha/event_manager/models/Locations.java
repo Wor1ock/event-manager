@@ -10,7 +10,9 @@ public class Locations {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long location_id;
-    private String name, adress, description;
+    private String name;
+    private String address;
+    private String description;
     private Integer capacity;
 
     public Long getLocation_id() {
@@ -29,12 +31,12 @@ public class Locations {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getDescription() {

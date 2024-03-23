@@ -1,24 +1,15 @@
 package com.afisha.event_manager.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@IdClass(ParticipationKey.class)
 public class Participations {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long part_id;
-
-    public Long getPart_id() {
-        return part_id;
-    }
-
-    public void setPart_id(Long part_id) {
-        this.part_id = part_id;
-    }
-
+    private Long event_id;
+    @Id
+    private Long user_id;
+    private Boolean status;
     public Long getEvent_id() {
         return event_id;
     }
@@ -43,6 +34,4 @@ public class Participations {
         this.status = status;
     }
 
-    private Long event_id, user_id;
-    private Boolean status;
 }

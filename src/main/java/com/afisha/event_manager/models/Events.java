@@ -1,9 +1,6 @@
 package com.afisha.event_manager.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -12,9 +9,17 @@ public class Events {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long event_id;
-    private String name, description;
-    private Long location_id, type_id;
-    private LocalDateTime startDateTime, endDateTime;
+    private String name;
+    private String description;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Locations location;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private EventTypes type;
 
     public Long getEvent_id() {
         return event_id;
@@ -40,20 +45,20 @@ public class Events {
         this.description = description;
     }
 
-    public Long getLocation_id() {
-        return location_id;
+    public Locations getLocation() {
+        return location;
     }
 
-    public void setLocation_id(Long location_id) {
-        this.location_id = location_id;
+    public void setLocation(Locations location) {
+        this.location = location;
     }
 
-    public Long getType_id() {
-        return type_id;
+    public EventTypes getType() {
+        return type;
     }
 
-    public void setType_id(Long type_id) {
-        this.type_id = type_id;
+    public void setType(EventTypes type) {
+        this.type = type;
     }
 
     public LocalDateTime getStartDateTime() {
