@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EventController {
     @Autowired
     private EventsRepository eventsRepository;
-    @GetMapping("/Events")
+    @GetMapping("/")
     public String eventMain(Model model) {
         Iterable<Events> events = eventsRepository.findAll();
         model.addAttribute("events", events);
-        return "event-main";
+        return "events";
+    }
+    @GetMapping("/event-add")
+    public String greeting(Model model) {
+        return "event-add";
     }
 }
