@@ -79,4 +79,22 @@ public class EventController {
         model.addAttribute("event", res);
         return "event-details";
     }
+
+    @GetMapping("/events/{id}/edit")
+    public String eventEdit(@PathVariable(value = "id") Long id, Model model) {
+        Optional <Events> event = eventsRepository.findById(id);
+        ArrayList <Events> res = new ArrayList<>();
+        event.ifPresent(res::add);
+        model.addAttribute("event", res);
+
+        List<Locations> locations = new ArrayList<>();
+        locationsRepository.findAll().forEach(locations::add);
+
+        List<EventTypes> eventTypes = new ArrayList<>();
+        eventTypesRepository.findAll().forEach(eventTypes::add);
+
+        model.addAttribute("locations", locations);
+        model.addAttribute("eventTypes", eventTypes);
+        return "event-edit";
+    }
 }
