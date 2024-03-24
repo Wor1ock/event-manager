@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <title th:text="${title}">Event manager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="container mt-5">
+    <h1>Подробности</h1>
+    <div th:each="el : ${event}" class="alert alert-info mt-2">
+        <h3 th:text="${el.name}"></h3>
+        <p th:text="${el.description}"></p>
+
+        <p th:text="${#temporals.format(el.startDateTime, 'd MMMM yyyy HH:mm', new java.util.Locale('ru'))}"></p>
+        <p th:text="${#temporals.format(el.endDateTime, 'd MMMM yyyy HH:mm', new java.util.Locale('ru'))}"></p>
+
+        <p th:text="${el.location.getName()}"></p>
+        <p th:text="${el.type.getDescription()}"></p>
+
+        <a th:href="'/events/' + ${el.event_id} + '/edit'" class="btn btn-warning">Редактировать</a>
+        <a th:href="'/events/' + ${el.event_id} + '/remove'" class="btn btn-warning">Удалить событие</a>
+    </div>
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

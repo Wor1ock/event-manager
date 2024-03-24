@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 public class EventController {
@@ -53,5 +56,18 @@ public class EventController {
         Events event = new Events(name, description, startDateTime, endDateTime, location, eventType);
         eventsRepository.save(event);
         return "redirect:/";
+    }
+
+    @GetMapping("/events/{id}")
+    public String eventInfo(@PathVariable(value = "id") Long id, Model model) {
+        if(!eventsRepository.existsById(id)){
+            return "redirect:/";
+        }
+
+        Optional <Events> event = eventsRepository.findById(id);
+        ArrayList <Events> res = new ArrayList<>();
+        event.ifPresent(res::add);
+        model.addAttribute("event", res);
+        return "event-details";
     }
 }
