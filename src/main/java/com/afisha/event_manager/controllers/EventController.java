@@ -57,11 +57,6 @@ public class EventController {
         Locations location = locationsRepository.findById(location_id).orElse(null);
         EventTypes eventType = eventTypesRepository.findById(type_id).orElse(null);
 
-        if (location == null || eventType == null) {
-            // Обработка случая, если локация или тип не найдены
-            return "error-page";
-        }
-
         Events event = new Events(name, description, startDateTime, endDateTime, location, eventType);
         eventsRepository.save(event);
         return "redirect:/";
@@ -96,5 +91,24 @@ public class EventController {
         model.addAttribute("locations", locations);
         model.addAttribute("eventTypes", eventTypes);
         return "event-edit";
+    }
+
+    @PostMapping("/events/{id}/edit")
+    public String eventPostUpdate(@PathVariable(value = "id") Long id, @RequestParam String name, @RequestParam String description,
+                               @RequestParam LocalDateTime startDateTime, @RequestParam LocalDateTime endDateTime,
+                               @RequestParam Long location_id, @RequestParam Long type_id, Model model) {
+        Locations location = locationsRepository.findById(location_id).orElse(null);
+        EventTypes eventType = eventTypesRepository.findById(type_id).orElse(null);
+
+        Events event = eventsRepository.findById(id).orElseThrow();
+        event.setName(name);
+        event.setDescription(description);
+        event.setStartDateTime(startDateTime);
+        event.setEndDateTime(endDateTime);
+        event.setLocation(location);
+        event.setType(eventType);
+
+        eventsRepository.save(event);
+        return "redirect:/";
     }
 }
