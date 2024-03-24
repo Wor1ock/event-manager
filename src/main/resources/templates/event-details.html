@@ -20,9 +20,9 @@
         <p th:text="${el.location.getName()}"></p>
         <p th:text="${el.type.getDescription()}"></p>
 
-        <a th:href="'/events/' + ${el.event_id} + '/edit'" class="btn btn-warning">Редактировать</a>
+        <a th:href="'/events/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
 
-        <form th:action="'/events/' + ${el.event_id} + '/remove'" method="post">
+        <form th:action="'/events/' + ${el.id} + '/remove'" method="post">
             <button class="btn btn-warning" type="submit">Удалить</button>
         </form>
     </div>

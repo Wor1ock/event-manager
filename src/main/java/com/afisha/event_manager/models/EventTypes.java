@@ -9,15 +9,15 @@ import jakarta.persistence.Id;
 public class EventTypes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long type_id;
+    private Long id;
     private String description;
 
-    public Long getType_id() {
-        return type_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setType_id(Long type_id) {
-        this.type_id = type_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescription() {

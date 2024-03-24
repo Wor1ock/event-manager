@@ -9,18 +9,18 @@ import jakarta.persistence.Id;
 public class Locations {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long location_id;
+    private Long id;
     private String name;
     private String address;
     private String description;
     private Integer capacity;
 
-    public Long getLocation_id() {
-        return location_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setLocation_id(Long location_id) {
-        this.location_id = location_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

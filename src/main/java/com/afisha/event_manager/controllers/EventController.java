@@ -37,7 +37,14 @@ public class EventController {
         return "events";
     }
 
-    @GetMapping("/event/add")
+    @GetMapping("/events")
+    public String eventMain2(Model model) {
+        Iterable<Events> events = eventsRepository.findAll();
+        model.addAttribute("events", events);
+        return "events";
+    }
+
+    @GetMapping("/events/add")
     public String eventAdd(Model model) {
         List<Locations> locations = new ArrayList<>();
         locationsRepository.findAll().forEach(locations::add);
@@ -50,7 +57,7 @@ public class EventController {
         return "event-add";
     }
 
-    @PostMapping("/event/add")
+    @PostMapping("/events/add")
     public String eventPostAdd(@RequestParam String name, @RequestParam String description,
                                @RequestParam LocalDateTime startDateTime, @RequestParam LocalDateTime endDateTime,
                                @RequestParam Long location_id, @RequestParam Long type_id, Model model) {

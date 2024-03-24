@@ -23,7 +23,7 @@
             <select id="location_id" name="location_id" class="form-control">
                 <option value="">Выберите локацию</option>
                 <th:block th:each="loc : ${locations}">
-                    <option th:value="${loc.getLocation_id()}" th:text="${loc.getName()}" th:selected="${loc.getLocation_id() == el.location.getLocation_id()}"></option>
+                    <option th:value="${loc.getId()}" th:text="${loc.getName()}" th:selected="${loc.getId() == el.location.getId()}"></option>
                 </th:block>
             </select><br>
 
@@ -31,7 +31,7 @@
             <select id="type_id" name="type_id" class="form-control">
                 <option value="">Выберите тип события</option>
                 <th:block th:each="type : ${eventTypes}">
-                    <option th:value="${type.getType_id()}" th:text="${type.getDescription()}" th:selected="${type.getType_id() == el.type.getType_id()}"></option>
+                    <option th:value="${type.getId()}" th:text="${type.getDescription()}" th:selected="${type.getId() == el.type.getId()}"></option>
                 </th:block>
             </select><br>
 

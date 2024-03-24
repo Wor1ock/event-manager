@@ -11,7 +11,7 @@
 
 <div class="container my-5">
     <h1>Создание события</h1>
-    <form action="/event/add" method="post">
+    <form action="/events/add" method="post">
         <input type="text" name="name" placeholder="Введите название события" class="form-control"><br>
         <input type="text" name="description" placeholder="Опишите событие" class="form-control"><br>
 
@@ -22,7 +22,7 @@
         <select id="location_id" name="location_id" class="form-control">
             <option value="">Выберите локацию</option>
             <th:block th:each="loc : ${locations}">
-                <option th:value="${loc.getLocation_id()}" th:text="${loc.getName()}"></option>
+                <option th:value="${loc.getId()}" th:text="${loc.getName()}"></option>
             </th:block>
         </select><br>
 
@@ -30,7 +30,7 @@
         <select id="type_id" name="type_id" class="form-control">
             <option value="">Выберите тип события</option>
             <th:block th:each="type : ${eventTypes}">
-                <option th:value="${type.getType_id()}" th:text="${type.getDescription()}"></option>
+                <option th:value="${type.getId()}" th:text="${type.getDescription()}"></option>
             </th:block>
         </select><br>
 
