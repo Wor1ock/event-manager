@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -38,6 +39,14 @@ public class EventController {
 
     @GetMapping("/event/add")
     public String eventAdd(Model model) {
+        List<Locations> locations = new ArrayList<>();
+        locationsRepository.findAll().forEach(locations::add);
+
+        List<EventTypes> eventTypes = new ArrayList<>();
+        eventTypesRepository.findAll().forEach(eventTypes::add);
+
+        model.addAttribute("locations", locations);
+        model.addAttribute("eventTypes", eventTypes);
         return "event-add";
     }
 

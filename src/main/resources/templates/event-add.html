@@ -18,8 +18,22 @@
         <input type="datetime-local" name="startDateTime" placeholder="Начало события" class="form-control"><br>
         <input type="datetime-local" name="endDateTime" placeholder="Конец события" class="form-control"><br>
 
-        <input type="number" name="location_id" placeholder="Локация" class="form-control"><br>
-        <input type="number" name="type_id" placeholder="Тип события" class="form-control"><br>
+        <label for="location_id">Выберите локацию:</label>
+        <select id="location_id" name="location_id" class="form-control">
+            <option value="">Выберите локацию</option>
+            <th:block th:each="loc : ${locations}">
+                <option th:value="${loc.getLocation_id()}" th:text="${loc.getName()}"></option>
+            </th:block>
+        </select><br>
+
+
+        <label for="type_id">Выберите тип события:</label>
+        <select id="type_id" name="type_id" class="form-control">
+            <option value="">Выберите тип события</option>
+            <th:block th:each="type : ${eventTypes}">
+                <option th:value="${type.getType_id()}" th:text="${type.getDescription()}"></option>
+            </th:block>
+        </select><br>
 
         <button type="submit" class="btn btn-success">Добавить событие</button>
     </form>
