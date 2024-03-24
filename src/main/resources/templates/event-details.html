@@ -21,7 +21,10 @@
         <p th:text="${el.type.getDescription()}"></p>
 
         <a th:href="'/events/' + ${el.event_id} + '/edit'" class="btn btn-warning">Редактировать</a>
-        <a th:href="'/events/' + ${el.event_id} + '/remove'" class="btn btn-warning">Удалить событие</a>
+
+        <form th:action="'/events/' + ${el.event_id} + '/remove'" method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
     </div>
 </div>
 <footer th:insert="blocks/footer :: footer"></footer>

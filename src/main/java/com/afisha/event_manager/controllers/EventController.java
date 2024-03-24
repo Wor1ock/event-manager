@@ -111,4 +111,14 @@ public class EventController {
         eventsRepository.save(event);
         return "redirect:/";
     }
+//    @GetMapping("/events/{id}/remove")
+//    public String eventGetDelete(@PathVariable(value = "id") Long id, Model model) {
+//        return "redirect:/events/ + ${id}";
+//    }
+    @PostMapping("/events/{id}/remove")
+    public String eventPostDelete(@PathVariable(value = "id") Long id, Model model) {
+        Events event = eventsRepository.findById(id).orElseThrow();
+        eventsRepository.delete(event);
+        return "redirect:/";
+    }
 }
