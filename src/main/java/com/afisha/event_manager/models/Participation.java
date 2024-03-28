@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @IdClass(ParticipationKey.class)
-public class Participations {
+public class Participation {
     @Id
     private Long event_id;
     @Id

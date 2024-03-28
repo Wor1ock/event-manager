@@ -1,11 +1,11 @@
 package com.afisha.event_manager.controllers;
 
-import com.afisha.event_manager.models.EventTypes;
-import com.afisha.event_manager.models.Events;
-import com.afisha.event_manager.models.Locations;
-import com.afisha.event_manager.repositories.EventsRepository;
-import com.afisha.event_manager.repositories.LocationsRepository;
-import com.afisha.event_manager.repositories.EventTypesRepository;
+import com.afisha.event_manager.models.EventType;
+import com.afisha.event_manager.models.Event;
+import com.afisha.event_manager.models.Location;
+import com.afisha.event_manager.repositories.EventRepository;
+import com.afisha.event_manager.repositories.LocationRepository;
+import com.afisha.event_manager.repositories.EventTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,35 +22,35 @@ import java.util.Optional;
 @Controller
 public class EventController {
     @Autowired
-    private EventsRepository eventsRepository;
+    private EventRepository eventRepository;
 
     @Autowired
-    private LocationsRepository locationsRepository;
+    private LocationRepository locationRepository;
 
     @Autowired
-    private EventTypesRepository eventTypesRepository;
+    private EventTypeRepository eventTypeRepository;
 
     @GetMapping("/")
     public String eventMain(Model model) {
-        Iterable<Events> events = eventsRepository.findAll();
+        Iterable<Event> events = eventRepository.findAll();
         model.addAttribute("events", events);
         return "events";
     }
 
     @GetMapping("/events")
     public String eventMain2(Model model) {
-        Iterable<Events> events = eventsRepository.findAll();
+        Iterable<Event> events = eventRepository.findAll();
         model.addAttribute("events", events);
         return "events";
     }
 
     @GetMapping("/events/add")
     public String eventAdd(Model model) {
-        List<Locations> locations = new ArrayList<>();
-        locationsRepository.findAll().forEach(locations::add);
+        List<Location> locations = new ArrayList<>();
+        locationRepository.findAll().forEach(locations::add);
 
-        List<EventTypes> eventTypes = new ArrayList<>();
-        eventTypesRepository.findAll().forEach(eventTypes::add);
+        List<EventType> eventTypes = new ArrayList<>();
+        eventTypeRepository.findAll().forEach(eventTypes::add);
 
         model.addAttribute("locations", locations);
         model.addAttribute("eventTypes", eventTypes);
@@ -61,22 +61,22 @@ public class EventController {
     public String eventPostAdd(@RequestParam String name, @RequestParam String description,
                                @RequestParam LocalDateTime startDateTime, @RequestParam LocalDateTime endDateTime,
                                @RequestParam Long location_id, @RequestParam Long type_id, Model model) {
-        Locations location = locationsRepository.findById(location_id).orElse(null);
-        EventTypes eventType = eventTypesRepository.findById(type_id).orElse(null);
+        Location location = locationRepository.findById(location_id).orElse(null);
+        EventType eventType = eventTypeRepository.findById(type_id).orElse(null);
 
-        Events event = new Events(name, description, startDateTime, endDateTime, location, eventType);
-        eventsRepository.save(event);
+        Event event = new Event(name, description, startDateTime, endDateTime, location, eventType);
+        eventRepository.save(event);
         return "redirect:/";
     }
 
     @GetMapping("/events/{id}")
     public String eventInfo(@PathVariable(value = "id") Long id, Model model) {
-        if(!eventsRepository.existsById(id)){
+        if(!eventRepository.existsById(id)){
             return "redirect:/";
         }
 
-        Optional <Events> event = eventsRepository.findById(id);
-        ArrayList <Events> res = new ArrayList<>();
+        Optional <Event> event = eventRepository.findById(id);
+        ArrayList <Event> res = new ArrayList<>();
         event.ifPresent(res::add);
         model.addAttribute("event", res);
         return "event-details";
@@ -84,16 +84,16 @@ public class EventController {
 
     @GetMapping("/events/{id}/edit")
     public String eventEdit(@PathVariable(value = "id") Long id, Model model) {
-        Optional <Events> event = eventsRepository.findById(id);
-        ArrayList <Events> res = new ArrayList<>();
+        Optional <Event> event = eventRepository.findById(id);
+        ArrayList <Event> res = new ArrayList<>();
         event.ifPresent(res::add);
         model.addAttribute("event", res);
 
-        List<Locations> locations = new ArrayList<>();
-        locationsRepository.findAll().forEach(locations::add);
+        List<Location> locations = new ArrayList<>();
+        locationRepository.findAll().forEach(locations::add);
 
-        List<EventTypes> eventTypes = new ArrayList<>();
-        eventTypesRepository.findAll().forEach(eventTypes::add);
+        List<EventType> eventTypes = new ArrayList<>();
+        eventTypeRepository.findAll().forEach(eventTypes::add);
 
         model.addAttribute("locations", locations);
         model.addAttribute("eventTypes", eventTypes);
@@ -104,10 +104,10 @@ public class EventController {
     public String eventPostUpdate(@PathVariable(value = "id") Long id, @RequestParam String name, @RequestParam String description,
                                @RequestParam LocalDateTime startDateTime, @RequestParam LocalDateTime endDateTime,
                                @RequestParam Long location_id, @RequestParam Long type_id, Model model) {
-        Locations location = locationsRepository.findById(location_id).orElse(null);
-        EventTypes eventType = eventTypesRepository.findById(type_id).orElse(null);
+        Location location = locationRepository.findById(location_id).orElse(null);
+        EventType eventType = eventTypeRepository.findById(type_id).orElse(null);
 
-        Events event = eventsRepository.findById(id).orElseThrow();
+        Event event = eventRepository.findById(id).orElseThrow();
         event.setName(name);
         event.setDescription(description);
         event.setStartDateTime(startDateTime);
@@ -115,7 +115,7 @@ public class EventController {
         event.setLocation(location);
         event.setType(eventType);
 
-        eventsRepository.save(event);
+        eventRepository.save(event);
         return "redirect:/";
     }
 //    @GetMapping("/events/{id}/remove")
@@ -124,8 +124,8 @@ public class EventController {
 //    }
     @PostMapping("/events/{id}/remove")
     public String eventPostDelete(@PathVariable(value = "id") Long id, Model model) {
-        Events event = eventsRepository.findById(id).orElseThrow();
-        eventsRepository.delete(event);
+        Event event = eventRepository.findById(id).orElseThrow();
+        eventRepository.delete(event);
         return "redirect:/";
     }
 }

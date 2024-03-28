@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Events {
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -15,13 +15,13 @@ public class Events {
     private LocalDateTime endDateTime;
     @ManyToOne
     @JoinColumn(name = "location_id")
-    private Locations location;
+    private Location location;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
-    private EventTypes type;
+    private EventType type;
 
-    public Events(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, Locations location, EventTypes type) {
+    public Event(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, Location location, EventType type) {
         this.name = name;
         this.description = description;
         this.startDateTime = startDateTime;
@@ -30,7 +30,7 @@ public class Events {
         this.type = type;
     }
 
-    public Events(){
+    public Event(){
 
     }
     public Long getId() {
@@ -57,19 +57,19 @@ public class Events {
         this.description = description;
     }
 
-    public Locations getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(Locations location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
-    public EventTypes getType() {
+    public EventType getType() {
         return type;
     }
 
-    public void setType(EventTypes type) {
+    public void setType(EventType type) {
         this.type = type;
     }
 
