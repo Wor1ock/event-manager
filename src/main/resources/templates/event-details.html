@@ -15,7 +15,6 @@
         <p th:text="${el.description}"></p>
 
         <p th:text="${#temporals.format(el.startDateTime, 'd MMMM yyyy HH:mm', new java.util.Locale('ru'))}"></p>
-        <p th:text="${#temporals.format(el.endDateTime, 'd MMMM yyyy HH:mm', new java.util.Locale('ru'))}"></p>
 
         <p th:text="${el.location.getName()}"></p>
         <p th:text="${el.type.getDescription()}"></p>

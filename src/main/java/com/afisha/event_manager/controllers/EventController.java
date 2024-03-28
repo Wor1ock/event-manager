@@ -59,12 +59,12 @@ public class EventController {
 
     @PostMapping("/events/add")
     public String eventPostAdd(@RequestParam String name, @RequestParam String description,
-                               @RequestParam LocalDateTime startDateTime, @RequestParam LocalDateTime endDateTime,
+                               @RequestParam LocalDateTime startDateTime,
                                @RequestParam Long location_id, @RequestParam Long type_id, Model model) {
         Location location = locationRepository.findById(location_id).orElse(null);
         EventType eventType = eventTypeRepository.findById(type_id).orElse(null);
 
-        Event event = new Event(name, description, startDateTime, endDateTime, location, eventType);
+        Event event = new Event(name, description, startDateTime, location, eventType);
         eventRepository.save(event);
         return "redirect:/";
     }
@@ -102,7 +102,7 @@ public class EventController {
 
     @PostMapping("/events/{id}/edit")
     public String eventPostUpdate(@PathVariable(value = "id") Long id, @RequestParam String name, @RequestParam String description,
-                               @RequestParam LocalDateTime startDateTime, @RequestParam LocalDateTime endDateTime,
+                               @RequestParam LocalDateTime startDateTime,
                                @RequestParam Long location_id, @RequestParam Long type_id, Model model) {
         Location location = locationRepository.findById(location_id).orElse(null);
         EventType eventType = eventTypeRepository.findById(type_id).orElse(null);
@@ -111,7 +111,6 @@ public class EventController {
         event.setName(name);
         event.setDescription(description);
         event.setStartDateTime(startDateTime);
-        event.setEndDateTime(endDateTime);
         event.setLocation(location);
         event.setType(eventType);
 
