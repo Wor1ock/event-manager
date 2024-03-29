@@ -2,10 +2,12 @@ package com.afisha.event_manager.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "participations")
+@NoArgsConstructor
 @IdClass(ParticipationKey.class)
 public class Participation {
     @Id

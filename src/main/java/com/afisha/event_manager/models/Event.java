@@ -32,5 +32,4 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "type_id")
     private EventType type;
-
 }

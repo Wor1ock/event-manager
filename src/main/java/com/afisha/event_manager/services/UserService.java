@@ -10,8 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
     @Autowired
     private final UserRepository userRepository;

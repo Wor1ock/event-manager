@@ -7,6 +7,7 @@ import com.afisha.event_manager.repositories.EventRepository;
 import com.afisha.event_manager.repositories.LocationRepository;
 import com.afisha.event_manager.repositories.EventTypeRepository;
 import com.afisha.event_manager.services.EventService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,21 +20,15 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@RequiredArgsConstructor
 public class EventController {
     @Autowired
     private EventRepository eventRepository;
     @Autowired
     private EventService eventService;
 
-    @GetMapping("/")
+    @GetMapping({"/", "/events"})
     public String eventMain(Model model) {
-        Iterable<Event> events = eventRepository.findAll();
-        model.addAttribute("events", events);
-        return "events";
-    }
-
-    @GetMapping("/events")
-    public String eventMain2(Model model) {
         Iterable<Event> events = eventRepository.findAll();
         model.addAttribute("events", events);
         return "events";
