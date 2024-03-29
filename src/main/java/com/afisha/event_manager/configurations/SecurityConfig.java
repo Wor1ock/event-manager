@@ -27,8 +27,8 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/registration").permitAll()
-                        .requestMatchers("/product/**", "/image/**")
+                        .requestMatchers("/events", "/registration").permitAll()
+                        .requestMatchers("/events/**")
                         .hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
                         .anyRequest().authenticated()
 //                        .requestMatchers(HttpMethod.OPTIONS).permitAll()
@@ -37,7 +37,10 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout.permitAll()
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .logoutSuccessUrl("/login?logout"));
 
         return http.build();
     }
