@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "events")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,13 +32,5 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "type_id")
     private EventType type;
-
-    public Event(String name, String description, LocalDateTime startDateTime, Location location, EventType type) {
-        this.name = name;
-        this.description = description;
-        this.startDateTime = startDateTime;
-        this.location = location;
-        this.type = type;
-    }
 
 }

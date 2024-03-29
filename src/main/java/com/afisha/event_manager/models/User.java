@@ -21,14 +21,19 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "email", unique = true)
     private String email;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "date_of_creation")
     private LocalDateTime dateOfCreation;
+
     @Column(name = "active")
     private Boolean active;
 

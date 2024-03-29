@@ -17,7 +17,7 @@
         <p th:text="${#temporals.format(el.startDateTime, 'd MMMM yyyy HH:mm', new java.util.Locale('ru'))}"></p>
 
         <p th:text="${el.location.getName()}"></p>
-        <p th:text="${el.type.getDescription()}"></p>
+        <p th:text="${el.type.getName()}"></p>
 
         <a th:href="'/events/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
 

@@ -22,12 +22,6 @@ import java.util.Optional;
 public class EventController {
     @Autowired
     private EventRepository eventRepository;
-
-    @Autowired
-    private LocationRepository locationRepository;
-
-    @Autowired
-    private EventTypeRepository eventTypeRepository;
     @Autowired
     private EventService eventService;
 

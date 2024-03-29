@@ -30,7 +30,7 @@
             <select id="type_id" name="type_id" class="form-control">
                 <option value="">Выберите тип события</option>
                 <th:block th:each="type : ${eventTypes}">
-                    <option th:value="${type.getId()}" th:text="${type.getDescription()}" th:selected="${type.getId() == el.type.getId()}"></option>
+                    <option th:value="${type.getId()}" th:text="${type.getName()}" th:selected="${type.getId() == el.type.getId()}"></option>
                 </th:block>
             </select><br>
 
