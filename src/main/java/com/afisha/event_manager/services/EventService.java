@@ -7,6 +7,7 @@ import com.afisha.event_manager.repositories.EventRepository;
 import com.afisha.event_manager.repositories.EventTypeRepository;
 import com.afisha.event_manager.repositories.LocationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,8 +16,11 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class EventService {
+    @Autowired
     private final EventRepository eventRepository;
+    @Autowired
     private final LocationRepository locationRepository;
+    @Autowired
     private final EventTypeRepository eventTypeRepository;
 
     public void addEvent(Event event, Long locationId, Long typeId) {
@@ -76,4 +80,16 @@ public class EventService {
 
         eventRepository.save(event);
     }
+
+//    public void updateEvent(Long id, Event updatedEvent) {
+//        Event event = eventRepository.findById(id).orElseThrow();
+//
+//        event.setName(updatedEvent.getName());
+//        event.setDescription(updatedEvent.getDescription());
+//        event.setStartDateTime(updatedEvent.getStartDateTime());
+//        event.setLocation(updatedEvent.getLocation());
+//        event.setType(updatedEvent.getType());
+//
+//        eventRepository.save(event);
+//    }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event manager</title>
+</head>
+<body>
+<h1>Event manager</h1>
+<hr>
+<h4>Авторизация</h4>
+<form action="/login" method="post">
+    <label for="username">Имя:</label>
+    <input type="text" id="username" name="username"><br><br>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password"><br><br>
+
+    <input type="submit" value="Вход"/>
+</form>
+
+<a href="/registration">Регистрация</a>
+</body>
+</html>

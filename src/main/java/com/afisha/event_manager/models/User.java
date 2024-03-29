@@ -1,12 +1,12 @@
 package com.afisha.event_manager.models;
 
 import com.afisha.event_manager.models.enums.Role;
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -29,6 +29,8 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "date_of_creation")
     private LocalDateTime dateOfCreation;
+    @Column(name = "active")
+    private Boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role",
