@@ -3,13 +3,16 @@ package com.afisha.event_manager.services;
 import com.afisha.event_manager.models.Event;
 import com.afisha.event_manager.models.EventType;
 import com.afisha.event_manager.models.Location;
+import com.afisha.event_manager.models.User;
 import com.afisha.event_manager.repositories.EventRepository;
 import com.afisha.event_manager.repositories.EventTypeRepository;
 import com.afisha.event_manager.repositories.LocationRepository;
+import com.afisha.event_manager.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -22,8 +25,11 @@ public class EventService {
     private final LocationRepository locationRepository;
     @Autowired
     private final EventTypeRepository eventTypeRepository;
+    @Autowired
+    private final UserRepository userRepository;
 
-    public void addEvent(Event event, Long locationId, Long typeId) {
+    public void addEvent(Principal principal, Event event, Long locationId, Long typeId) {
+        event.setUser(getUserByPrincipal(principal));
         Location location = locationRepository.findById(locationId).orElse(null);
         EventType type = eventTypeRepository.findById(typeId).orElse(null);
 
@@ -32,6 +38,12 @@ public class EventService {
             event.setType(type);
             eventRepository.save(event);
         }
+    }
+
+    public User getUserByPrincipal(Principal principal) {
+        if(principal == null) return new User();
+        String email = principal.getName();
+        return userRepository.findByEmail(principal.getName());
     }
 
     public Map<String, List<?>> getLocationsAndEventTypes() {

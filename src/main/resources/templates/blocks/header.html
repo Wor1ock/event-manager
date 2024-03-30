@@ -4,7 +4,16 @@
         <nav class="my-2 my-md-0">
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Все события</a>
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/events/add">Создать событие</a>
-            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/logout">Выход</a>
+
+            <div th:if="${user.getEmail()}">
+                <h3>Имя пользователя: <i th:text="${user.getName()}"></i></h3>
+                <form action="/logout" method="post">
+                    <input type="submit" value="Выйти"/>
+                </form>
+            </div>
+            <div th:unless="${user.getEmail()}">
+                <a href="/login">Войти</a>
+            </div>
         </nav>
     </div>
 </div>

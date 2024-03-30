@@ -53,6 +53,14 @@ public class User implements UserDetails {
     private void init() {
         dateOfCreation = LocalDateTime.now();
     }
+
+    public String getUsername() {
+        return email;
+    }
+    public String getName(){
+        return username;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;

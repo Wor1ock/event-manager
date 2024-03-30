@@ -3,6 +3,7 @@ package com.afisha.event_manager.controllers;
 import com.afisha.event_manager.models.EventType;
 import com.afisha.event_manager.models.Event;
 import com.afisha.event_manager.models.Location;
+import com.afisha.event_manager.models.User;
 import com.afisha.event_manager.repositories.EventRepository;
 import com.afisha.event_manager.repositories.LocationRepository;
 import com.afisha.event_manager.repositories.EventTypeRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +30,11 @@ public class EventController {
     private EventService eventService;
 
     @GetMapping({"/", "/events"})
-    public String eventMain(Model model) {
+    public String eventMain(Principal principal, Model model) {
         Iterable<Event> events = eventRepository.findAll();
         model.addAttribute("events", events);
+        User user = eventService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
         return "events";
     }
 
@@ -42,8 +46,9 @@ public class EventController {
     }
 
     @PostMapping("/events/add")
-    public String eventPostAdd(@ModelAttribute("event") Event event, @RequestParam("location_id") Long locationId, @RequestParam("type_id") Long typeId) {
-        eventService.addEvent(event, locationId, typeId);
+    public String eventPostAdd(@ModelAttribute("event") Event event, @RequestParam("location_id") Long locationId,
+                               @RequestParam("type_id") Long typeId, Principal principal) {
+        eventService.addEvent(principal, event, locationId, typeId);
         return "redirect:/";
     }
 
