@@ -4,13 +4,16 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "locations")
 public class Location {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -25,4 +28,8 @@ public class Location {
 
     @Column(name = "capacity")
     private Integer capacity;
+
+    @OneToMany(cascade =  CascadeType.REFRESH, fetch = FetchType.LAZY,
+    mappedBy = "location")
+    private List<Event> events = new ArrayList<>();
 }
