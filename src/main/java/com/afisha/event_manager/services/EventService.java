@@ -42,7 +42,6 @@ public class EventService {
 
     public User getUserByPrincipal(Principal principal) {
         if(principal == null) return new User();
-        String email = principal.getName();
         return userRepository.findByEmail(principal.getName());
     }
 

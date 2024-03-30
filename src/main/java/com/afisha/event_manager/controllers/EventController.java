@@ -39,9 +39,12 @@ public class EventController {
     }
 
     @GetMapping("/events/add")
-    public String eventAdd(Model model) {
+    public String eventAdd(Principal principal, Model model) {
         Map<String, List<?>> data = eventService.getLocationsAndEventTypes();
         model.addAllAttributes(data);
+
+        User user = eventService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
         return "event-add";
     }
 
@@ -53,21 +56,27 @@ public class EventController {
     }
 
     @GetMapping("/events/{id}")
-    public String eventInfo(@PathVariable(value = "id") Long id, Model model) {
+    public String eventInfo(@PathVariable(value = "id") Long id, Principal principal, Model model) {
         Optional<Event> event = eventRepository.findById(id);
 
         if (!event.isPresent())
             return "redirect:/";
 
         model.addAttribute("event", event.get());
+
+        User user = eventService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
         return "event-details";
     }
 
 
     @GetMapping("/events/{id}/edit")
-    public String eventEdit(@PathVariable(value = "id") Long id, Model model) {
+    public String eventEdit(@PathVariable(value = "id") Long id, Principal principal, Model model) {
         Map<String, Object> data = eventService.getEventAndDataById(id);
         model.addAllAttributes(data);
+
+        User user = eventService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
         return "event-edit";
     }
 
