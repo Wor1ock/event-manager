@@ -35,9 +35,9 @@ public class User implements UserDetails {
     @Column(name = "active")
     private Boolean active;
 
-//    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-//    mappedBy = "user_id")
-//    private List<Participation> participations = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
+    mappedBy = "user_id")
+    private List<Participation> participations = new ArrayList<>();
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role",

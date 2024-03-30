@@ -35,7 +35,7 @@ public class Event {
     @JoinColumn(name = "type_id")
     private EventType type;
 
-//    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-//    mappedBy = "event_id")
-//    private List<Participation> participations = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
+    mappedBy = "event_id")
+    private List<Participation> participations = new ArrayList<>();
 }

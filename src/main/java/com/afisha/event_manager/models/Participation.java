@@ -11,14 +11,14 @@ import lombok.NoArgsConstructor;
 @IdClass(ParticipationKey.class)
 public class Participation {
     @Id
-//    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "event_id")
-    private Long event_id;
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "event_id", referencedColumnName = "id")
+    private Event event_id;
 
     @Id
-//    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "user_id")
-    private Long user_id;
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user_id;
 
     @Column(name = "status")
     private Boolean status;
