@@ -27,15 +27,19 @@ public class Event {
     @Column(name = "startDateTime")
     private LocalDateTime startDateTime;
 
-    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     private EventType type;
 
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
     mappedBy = "event_id")
     private List<Participation> participations = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
