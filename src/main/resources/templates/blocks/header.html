@@ -5,13 +5,13 @@
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Все события</a>
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/events/add">Создать событие</a>
 
-            <div th:if="${user.getEmail()}">
-                <h3>Имя пользователя: <i th:text="${user.getName()}"></i></h3>
+            <div th:if="${current_user.getEmail()}">
+                <h3>Имя пользователя: <i th:text="${current_user.getName()}"></i></h3>
                 <form action="/logout" method="post">
                     <input type="submit" value="Выйти"/>
                 </form>
             </div>
-            <div th:unless="${user.getEmail()}">
+            <div th:unless="${current_user.getEmail()}">
                 <a href="/login">Войти</a>
             </div>
         </nav>

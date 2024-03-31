@@ -23,4 +23,12 @@ public class EventType {
     @OneToMany(cascade =  CascadeType.REFRESH, fetch = FetchType.LAZY,
             mappedBy = "type")
     private List<Event> events = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "EventType{" +
+                "id=" + id +
+                ", name='" + name +
+                '}';
+    }
 }

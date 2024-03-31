@@ -32,4 +32,15 @@ public class Location {
     @OneToMany(cascade =  CascadeType.REFRESH, fetch = FetchType.LAZY,
     mappedBy = "location")
     private List<Event> events = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", capacity=" + capacity +
+                '}';
+    }
 }

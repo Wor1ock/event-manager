@@ -33,8 +33,9 @@ public class EventController {
     public String eventMain(Principal principal, Model model) {
         Iterable<Event> events = eventRepository.findAll();
         model.addAttribute("events", events);
+
         User user = eventService.getUserByPrincipal(principal);
-        model.addAttribute("user", user);
+        model.addAttribute("current_user", user);
         return "events";
     }
 
@@ -44,7 +45,7 @@ public class EventController {
         model.addAllAttributes(data);
 
         User user = eventService.getUserByPrincipal(principal);
-        model.addAttribute("user", user);
+        model.addAttribute("current_user", user);
         return "event-add";
     }
 
@@ -65,7 +66,7 @@ public class EventController {
         model.addAttribute("event", event.get());
 
         User user = eventService.getUserByPrincipal(principal);
-        model.addAttribute("user", user);
+        model.addAttribute("current_user", user);
         return "event-details";
     }
 
@@ -76,7 +77,7 @@ public class EventController {
         model.addAllAttributes(data);
 
         User user = eventService.getUserByPrincipal(principal);
-        model.addAttribute("user", user);
+        model.addAttribute("current_user", user);
         return "event-edit";
     }
 
