@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -82,5 +83,9 @@ public class UserService {
             participation.setStatus(true);
             participationRepository.save(participation);
         }
+    }
+    public User getUserByPrincipal(Principal principal) {
+        if(principal == null) return new User();
+        return userRepository.findByEmail(principal.getName());
     }
 }
