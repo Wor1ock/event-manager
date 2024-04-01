@@ -74,13 +74,13 @@ public class UserService {
         Participation participation = participationRepository.findById(user.getId(), event.getId());
 
         if (participation != null) {
-            participation.setStatus(!participation.getStatus());
+            participationRepository.delete(participation);
         } else {
             participation = new Participation();
             participation.setUser_id(user);
             participation.setEvent_id(event);
             participation.setStatus(true);
+            participationRepository.save(participation);
         }
-        participationRepository.save(participation);
     }
 }

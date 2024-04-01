@@ -10,8 +10,8 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5">
-    <p th:text="'Имя: ' + ${user.getName()}"></p>
-    <p th:text="'Email: ' + ${user.email}"></p>
+    <p th:text="'Имя: ' + ${current_user.getName()}"></p>
+    <p th:text="'Email: ' + ${current_user.email}"></p>
 
     <!-- Показывать события, если список событий не пуст, иначе выводить "Событий нет" -->
     <h4>Организуемые мной события:</h4>

@@ -78,7 +78,7 @@ public class UserController {
     @GetMapping("/my-profile")
     public String showMyProfile(Principal principal, Model model) {
         User user = eventService.getUserByPrincipal(principal);
-        model.addAttribute("user", user);
+        model.addAttribute("current_user", user);
 
         model.addAttribute("myEvents", user.getEvents());
 
