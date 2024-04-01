@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,6 +35,8 @@ public class UserController {
     private final EventService eventService;
     @Autowired
     private final EventRepository eventRepository;
+    @Autowired
+    private final ParticipationRepository participationRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -70,5 +73,17 @@ public class UserController {
         Event event = eventRepository.findById(id).orElseThrow();
         userService.followEvent(user, event);
         return "redirect:/events/{id}";
+    }
+
+    @GetMapping("/my-profile")
+    public String showMyProfile(Principal principal, Model model) {
+        User user = eventService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+
+        model.addAttribute("myEvents", user.getEvents());
+
+        List<Event> followedEvents = participationRepository.findAllEventsByUserId(user.getId());
+        model.addAttribute("followedEvents", followedEvents);
+        return "my-profile";
     }
 }
