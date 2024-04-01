@@ -28,12 +28,12 @@ VALUES (3, 'Выставка');
 INSERT INTO event_types(id, name)
 VALUES (4, 'Фестиваль');
 
-INSERT INTO events(id, description, name, start_date_time, location_id, type_id)
-VALUES (1, 'Крупный музыкальный фестиваль с участием известных исполнителей', 'Музыкальный фестиваль', '2024-08-10 18:00:00', 3, 1);
+INSERT INTO events(id, description, name, start_date_time, location_id, type_id, user_id)
+VALUES (1, 'Крупный музыкальный фестиваль с участием известных исполнителей', 'Музыкальный фестиваль', '2024-08-10 18:00:00', 3, 1, 2);
 
-INSERT INTO events(id, description, name, start_date_time, location_id, type_id)
-VALUES (2, 'Марафон по бегу на длинные дистанции', 'Беговой марафон', '2024-06-15 07:00:00', 1, 2);
+INSERT INTO events(id, description, name, start_date_time, location_id, type_id, user_id)
+VALUES (2, 'Марафон по бегу на длинные дистанции', 'Беговой марафон', '2024-06-15 07:00:00', 1, 2, 1);
 
-INSERT INTO events(id, description, name, start_date_time, location_id, type_id)
-VALUES (3, 'Корпоративный вечер сотрудников компании', 'Корпоративная вечеринка', '2024-05-25 19:00:00', 2, 3);
+INSERT INTO events(id, description, name, start_date_time, location_id, type_id, user_id)
+VALUES (3, 'Корпоративный вечер сотрудников компании', 'Корпоративная вечеринка', '2024-05-25 19:00:00', 2, 3, 1);
 

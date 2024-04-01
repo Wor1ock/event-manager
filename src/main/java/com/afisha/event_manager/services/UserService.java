@@ -1,7 +1,10 @@
 package com.afisha.event_manager.services;
 
+import com.afisha.event_manager.models.Event;
+import com.afisha.event_manager.models.Participation;
 import com.afisha.event_manager.models.User;
 import com.afisha.event_manager.models.enums.Role;
+import com.afisha.event_manager.repositories.ParticipationRepository;
 import com.afisha.event_manager.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,8 @@ public class UserService {
     private final UserRepository userRepository;
     @Autowired
     private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private final ParticipationRepository participationRepository;
 
     public boolean createUser(User user) {
         String userEmail = user.getEmail();
@@ -63,5 +68,19 @@ public class UserService {
             }
         }
         userRepository.save(user);
+    }
+
+    public void followEvent(User user, Event event) {
+        Participation participation = participationRepository.findById(user.getId(), event.getId());
+
+        if (participation != null) {
+            participation.setStatus(!participation.getStatus());
+        } else {
+            participation = new Participation();
+            participation.setUser_id(user);
+            participation.setEvent_id(event);
+            participation.setStatus(true);
+        }
+        participationRepository.save(participation);
     }
 }

@@ -32,6 +32,10 @@
             </form>
         </th:block>
 
+        <form th:action="'/events/' + ${el.id} + '/follow'" method="post">
+            <button class="btn btn-success" type="submit">Следить</button>
+        </form>
+
     </div>
 </div>
 <footer th:insert="blocks/footer :: footer"></footer>

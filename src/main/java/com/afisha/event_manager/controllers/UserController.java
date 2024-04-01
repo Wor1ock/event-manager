@@ -1,12 +1,19 @@
 package com.afisha.event_manager.controllers;
 
+import com.afisha.event_manager.models.Event;
+import com.afisha.event_manager.models.Participation;
 import com.afisha.event_manager.models.User;
+import com.afisha.event_manager.repositories.EventRepository;
+import com.afisha.event_manager.repositories.ParticipationRepository;
+import com.afisha.event_manager.repositories.UserRepository;
+import com.afisha.event_manager.services.EventService;
 import com.afisha.event_manager.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +22,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
     @Autowired
     private final UserService userService;
+    @Autowired
+    private final EventService eventService;
+    @Autowired
+    private final EventRepository eventRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -49,5 +62,13 @@ public class UserController {
         model.addAttribute("current_user", user);
         model.addAttribute("events", user.getEvents());
         return "/user-info";
+    }
+
+    @PostMapping("/events/{id}/follow")
+    public String followEvent(@PathVariable(value = "id") Long id, Principal principal) {
+        User user = eventService.getUserByPrincipal(principal);
+        Event event = eventRepository.findById(id).orElseThrow();
+        userService.followEvent(user, event);
+        return "redirect:/events/{id}";
     }
 }

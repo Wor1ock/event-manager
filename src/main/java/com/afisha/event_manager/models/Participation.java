@@ -22,4 +22,5 @@ public class Participation {
 
     @Column(name = "status")
     private Boolean status;
+
 }
