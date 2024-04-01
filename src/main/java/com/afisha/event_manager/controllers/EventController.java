@@ -1,12 +1,10 @@
 package com.afisha.event_manager.controllers;
 
-import com.afisha.event_manager.models.EventType;
-import com.afisha.event_manager.models.Event;
-import com.afisha.event_manager.models.Location;
-import com.afisha.event_manager.models.User;
+import com.afisha.event_manager.models.*;
 import com.afisha.event_manager.repositories.EventRepository;
 import com.afisha.event_manager.repositories.LocationRepository;
 import com.afisha.event_manager.repositories.EventTypeRepository;
+import com.afisha.event_manager.repositories.ParticipationRepository;
 import com.afisha.event_manager.services.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +26,8 @@ public class EventController {
     private EventRepository eventRepository;
     @Autowired
     private EventService eventService;
+    @Autowired
+    private ParticipationRepository participationRepository;
 
     @GetMapping({"/", "/events"})
     public String eventMain(Principal principal, Model model) {
@@ -58,15 +58,14 @@ public class EventController {
 
     @GetMapping("/events/{id}")
     public String eventInfo(@PathVariable(value = "id") Long id, Principal principal, Model model) {
-        Optional<Event> event = eventRepository.findById(id);
-
-        if (!event.isPresent())
-            return "redirect:/";
-
-        model.addAttribute("event", event.get());
+        Event event = eventRepository.findById(id).orElseThrow();
+        model.addAttribute("event", event);
 
         User user = eventService.getUserByPrincipal(principal);
         model.addAttribute("current_user", user);
+
+        Participation participation = participationRepository.findById(user.getId(), event.getId());
+        model.addAttribute("participation", participation);
         return "event-details";
     }
 

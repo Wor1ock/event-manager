@@ -32,10 +32,17 @@
             </form>
         </th:block>
 
-        <form th:action="'/events/' + ${el.id} + '/follow'" method="post">
-            <button class="btn btn-success" type="submit">Следить</button>
-        </form>
+        <th:block th:if="${participation.status}">
+            <form th:action="'/events/' + ${el.id} + '/follow'" method="post">
+                <button class="btn btn-secondary" type="submit">Unfollow</button>
+            </form>
+        </th:block>
 
+        <th:block th:unless="${participation.status}">
+            <form th:action="'/events/' + ${el.id} + '/follow'" method="post">
+                <button class="btn btn-success" type="submit">Follow</button>
+            </form>
+        </th:block>
     </div>
 </div>
 <footer th:insert="blocks/footer :: footer"></footer>
