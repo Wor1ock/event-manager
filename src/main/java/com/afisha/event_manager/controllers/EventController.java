@@ -41,11 +41,14 @@ public class EventController {
 
     @GetMapping("/events/add")
     public String eventAdd(Principal principal, Model model) {
+        User user = eventService.getUserByPrincipal(principal);
+        model.addAttribute("current_user", user);
+
+        if (!user.getActive()) return "error-baned";
+
         Map<String, List<?>> data = eventService.getLocationsAndEventTypes();
         model.addAllAttributes(data);
 
-        User user = eventService.getUserByPrincipal(principal);
-        model.addAttribute("current_user", user);
         return "event-add";
     }
 
