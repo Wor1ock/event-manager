@@ -5,7 +5,6 @@ import com.afisha.event_manager.models.Participation;
 import com.afisha.event_manager.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
