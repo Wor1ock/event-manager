@@ -44,6 +44,23 @@
         </tr>
         </tbody>
     </table>
+
+    <h1>Создание локации</h1>
+    <form action="/admin/add/location" method="post">
+        <input type="text" name="name" placeholder="Введите название локации" class="form-control"><br>
+        <input type="text" name="address" placeholder="Введите адрес локации" class="form-control"><br>
+        <input type="text" name="description" placeholder="Опишите локацию" class="form-control"><br>
+        <input type="number" name="capacity" placeholder="Максимальное количество людей" class="form-control"><br>
+
+        <button type="submit" class="btn btn-success">Добавить локацию</button>
+    </form>
+
+    <h1>Создание типа событий</h1>
+    <form action="/admin/add/event-type" method="post">
+        <input type="text" name="name" placeholder="Введите тип события" class="form-control"><br>
+
+        <button type="submit" class="btn btn-success">Добавить тип события</button>
+    </form>
 </div>
 
 

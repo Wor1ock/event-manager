@@ -1,11 +1,13 @@
 package com.afisha.event_manager.controllers;
 
 import com.afisha.event_manager.models.Event;
-import com.afisha.event_manager.models.Participation;
+import com.afisha.event_manager.models.EventType;
+import com.afisha.event_manager.models.Location;
 import com.afisha.event_manager.models.User;
 import com.afisha.event_manager.repositories.EventRepository;
+import com.afisha.event_manager.repositories.EventTypeRepository;
+import com.afisha.event_manager.repositories.LocationRepository;
 import com.afisha.event_manager.repositories.ParticipationRepository;
-import com.afisha.event_manager.repositories.UserRepository;
 import com.afisha.event_manager.services.EventService;
 import com.afisha.event_manager.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +38,10 @@ public class UserController {
     private final EventRepository eventRepository;
     @Autowired
     private final ParticipationRepository participationRepository;
+    @Autowired
+    private final LocationRepository locationRepository;
+    @Autowired
+    private final EventTypeRepository eventTypeRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -85,5 +90,17 @@ public class UserController {
         List<Event> followedEvents = participationRepository.findAllEventsByUserId(user.getId());
         model.addAttribute("followedEvents", followedEvents);
         return "my-profile";
+    }
+
+    @PostMapping("/admin/add/location")
+    public String followEvent(@ModelAttribute Location location) {
+        locationRepository.save(location);
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/admin/add/event-type")
+    public String followEvent(@ModelAttribute EventType eventType) {
+        eventTypeRepository.save(eventType);
+        return "redirect:/admin";
     }
 }
