@@ -38,10 +38,6 @@ public class UserController {
     private final EventRepository eventRepository;
     @Autowired
     private final ParticipationRepository participationRepository;
-    @Autowired
-    private final LocationRepository locationRepository;
-    @Autowired
-    private final EventTypeRepository eventTypeRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -94,13 +90,13 @@ public class UserController {
 
     @PostMapping("/admin/add/location")
     public String followEvent(@ModelAttribute Location location) {
-        locationRepository.save(location);
+        eventService.addLocation(location);
         return "redirect:/admin";
     }
 
     @PostMapping("/admin/add/event-type")
     public String followEvent(@ModelAttribute EventType eventType) {
-        eventTypeRepository.save(eventType);
+        eventService.addEventType(eventType);
         return "redirect:/admin";
     }
 }

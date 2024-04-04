@@ -41,7 +41,7 @@ public class EventService {
     }
 
     public User getUserByPrincipal(Principal principal) {
-        if(principal == null) return new User();
+        if (principal == null) return new User();
         return userRepository.findByEmail(principal.getName());
     }
 
@@ -91,6 +91,15 @@ public class EventService {
 
         eventRepository.save(event);
     }
+
+    public void addLocation(Location location) {
+        locationRepository.save(location);
+    }
+
+    public void addEventType(EventType eventType) {
+        eventTypeRepository.save(eventType);
+    }
+
 
 //    public void updateEvent(Long id, Event updatedEvent) {
 //        Event event = eventRepository.findById(id).orElseThrow();
