@@ -77,15 +77,14 @@ public class EventService {
         return data;
     }
 
-    public void updateEvent(Long id, String name, String description, LocalDateTime startDateTime, Long locationId, Long typeId) {
+    public void updateEvent(Event updatedEvent, Long locationId, Long typeId) {
+        Event event = eventRepository.findById(updatedEvent.getId()).orElseThrow();
         Location location = locationRepository.findById(locationId).orElse(null);
         EventType eventType = eventTypeRepository.findById(typeId).orElse(null);
 
-        Event event = eventRepository.findById(id).orElseThrow();
-
-        event.setName(name);
-        event.setDescription(description);
-        event.setStartDateTime(startDateTime);
+        event.setName(updatedEvent.getName());
+        event.setDescription(updatedEvent.getDescription());
+        event.setStartDateTime(updatedEvent.getStartDateTime());
         event.setLocation(location);
         event.setType(eventType);
 
@@ -99,17 +98,4 @@ public class EventService {
     public void addEventType(EventType eventType) {
         eventTypeRepository.save(eventType);
     }
-
-
-//    public void updateEvent(Long id, Event updatedEvent) {
-//        Event event = eventRepository.findById(id).orElseThrow();
-//
-//        event.setName(updatedEvent.getName());
-//        event.setDescription(updatedEvent.getDescription());
-//        event.setStartDateTime(updatedEvent.getStartDateTime());
-//        event.setLocation(updatedEvent.getLocation());
-//        event.setType(updatedEvent.getType());
-//
-//        eventRepository.save(event);
-//    }
 }

@@ -84,21 +84,14 @@ public class EventController {
     }
 
     @PostMapping("/events/{id}/edit")
-    public String eventPostUpdate(@PathVariable(value = "id") Long id, @RequestParam String name, @RequestParam String description,
-                                  @RequestParam LocalDateTime startDateTime,
-                                  @RequestParam Long location_id, @RequestParam Long type_id, Model model) {
-        eventService.updateEvent(id, name, description, startDateTime, location_id, type_id);
+    public String eventPostUpdate(@PathVariable(value = "id") Long id, @ModelAttribute("event") Event event,
+                                  @RequestParam Long location_id, @RequestParam Long type_id) {
+        eventService.updateEvent(event, location_id, type_id);
         return "redirect:/";
     }
 
-//    @PostMapping("/events/{id}/edit")
-//    public String eventPostUpdate(@PathVariable(value = "id") Long id, @ModelAttribute("event") Event event, Model model) {
-//        eventService.updateEvent(id, event);
-//        return "redirect:/";
-//    }
-
     @PostMapping("/events/{id}/remove")
-    public String eventPostDelete(@PathVariable(value = "id") Long id, Model model) {
+    public String eventPostDelete(@PathVariable(value = "id") Long id) {
         Event event = eventRepository.findById(id).orElseThrow();
         eventRepository.delete(event);
         return "redirect:/";
