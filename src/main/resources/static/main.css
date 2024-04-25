@@ -1,0 +1,453 @@
+@charset "windows-1251";
+html{
+    font-size: 2.5vh;
+}
+body {
+    font-family: "Play", serif;
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+.top-menu li a:hover::after{
+    transform: scale(1);
+}
+.navbar-nav .dropdown-menu {
+    right: 0;
+    left: auto;
+
+}
+.navbar {
+    position: relative;
+    z-index: 3;
+    font-size:35px;
+}
+
+.top-menu li a::after{
+    content: '';
+    display: block;
+    width: 100%;
+    background-color:#111 ;
+    height: 1px;
+    transition: all .3s;
+    transform: scale(0);
+
+}
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.slogan{
+    display: block;
+    font-size: 2vh;
+    text-align: center;
+    margin-top: -5px;
+}
+.brand-name {
+    display: inline;
+    font-size:8.75vh;
+}
+.navbar-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1vw;
+}
+
+.rounding{
+    border-radius:1vh;
+}
+
+img{
+    max-width: 70%;
+}
+
+#ellipse1{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 0;
+    overflow: hidden
+}
+#ellipse2{
+    position: absolute;
+    top: 180vh;
+    left: 0px;
+    z-index: 0;
+    overflow: hidden;
+}
+
+
+
+.event-info {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Первая колонка автоматической ширины, вторая занимает оставшееся пространство */
+    grid-template-rows: auto auto auto; /* Три строки с автоматической высотой */
+    gap: 10px; /* Отступ между элементами */
+    border: 2px solid black;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.event-info h3 {
+    grid-column: 1; /* Размещаем в первой колонке */
+    grid-row: 1; /* Размещаем в первой строке */
+    margin: 0; /* Убираем внешние отступы */
+
+}
+
+.event-info .description {
+    grid-column: 1 / span 2; /* Занимает две колонки */
+    grid-row: 2; /* Размещаем во второй строке */
+    background-color: #226F54;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+.desc{
+    padding: 20px;
+    border-radius: 10px;
+}
+.event-info .type-name {
+    grid-column: 2; /* Размещаем во второй колонке */
+    grid-row: 1; /* Размещаем в первой строке */
+    align-self: start; /* Выравниваем по верхнему краю */
+    justify-self: end; /* Выравниваем по правому краю */
+    background-color: #DA2C38;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+
+}
+
+.event-info .start-time {
+    grid-column: 2; /* Размещаем во второй колонке */
+    grid-row: 3; /* Размещаем в третьей строке */
+    align-self: end; /* Выравниваем по нижнему краю */
+    justify-self: end; /* Выравниваем по правому краю */
+    color: black;
+    margin: 0;
+    font-size:3vh;
+
+}
+
+
+.big-header{
+    background-color:#DA2C38;
+    position: relative;
+    padding: 2vw;
+    width: 35vw;
+    height: 17vw;
+    border-radius: 2vw;
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.5);
+    margin-left:-5vw;
+    /* margin-top:5vw;*/
+    overflow: hidden; /* Скрываем лишний текст, который не помещается в блок */
+    text-overflow: ellipsis; /* Выводим многоточие для обрезанного текста */
+}
+h1{
+    font-size: 4vw;
+    color: white;
+    text-align: left;
+}
+.line-container {
+    margin-bottom: 1vw; /* Отступ между надписью и линиями */
+     margin-top: 1vw; /* Отступ между надписью и линиями */
+}
+.line {
+    width: 100%; /* Ширина линии */
+    height: 0.2vw; /* Высота линии */
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 0.8vw; /* Отступ между линиями */
+}
+#line1 {
+    width: 95%;
+}
+
+#line2 {
+    width: 70%;
+}
+
+#line3 {
+    width: 45%;
+}
+
+
+
+.my-red{
+    background-color:#DA2C38;
+}
+.bright-yellow{
+    background-color:#F2CB05;
+    color:black;
+}
+
+
+#btn1, #btn2, #btn3 {
+    margin-top: 1vw;
+    border-radius: 1vw;
+    z-index: 3;
+    position: relative;
+}
+
+#btn1,#btn2 {
+    background-color: #87C38F;
+}
+#btn3,#btn4,#btn5 {
+    background-color: #DA2C38;
+    border: 2px solid white;
+}
+
+.toad {
+  width: 30vw;
+  margin-left: 15vw;
+  height: auto; /* Автоматически подстраивает высоту, сохраняя пропорции */
+  z-index: 2;
+  transform: scaleX(-1) ;
+
+}
+
+.light-yellow-block
+{
+    background-color:#F4F0BB;
+}
+.light-green-block
+{
+    background-color:#87C38F;
+}
+
+
+.form-control{
+    position: relative;
+}
+footer {
+    position: relative;
+    z-index: 2; /* Отображаем над эллипсом */
+}
+form button[type="submit"] {
+    position:relative;
+    z-index: 9;
+    border-radius:3vh;
+}
+
+
+.rel{
+    position:relative;
+    z-index: 9;
+}
+.event-info-light {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Первая колонка занимает вдвое больше места, чем вторая */
+    grid-template-rows: auto auto; /* Две строки, одна для названия и красного блока, вторая для даты и времени */
+    gap: 15px; /* Отступ между элементами */
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.event-info-light h3 {
+    grid-column: 1; /* Размещаем в первой колонке */
+    grid-row: 1; /* Размещаем в первой строке */
+    margin: 0; /* Убираем внешние отступы */
+    white-space: nowrap;
+    overflow: hidden; /* Скрываем лишний текст, который не помещается в блок */
+    text-overflow: ellipsis; /* Выводим многоточие для обрезанного текста */
+    align-self: center; /* Выравниваем текст по центру вертикальной оси */
+}
+
+.event-info-light .type-name {
+    grid-column: 1; /* Размещаем в первой колонке */
+    grid-row: 2; /* Размещаем во второй строке */
+    background-color: #DA2C38; /* Красный цвет */
+    color: white;
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    align-self: end; /* Выравниваем красный блок по нижнему краю */
+}
+
+.event-info-light .start-date {
+    grid-column: 2; /* Размещаем во второй колонке */
+    grid-row: 1; /* Размещаем в первой строке */
+    color: black;
+    margin: 0;
+    justify-self: end; /* Выравниваем текст по правому краю */
+}
+
+.event-info-light .start-time {
+    grid-column: 2; /* Размещаем во второй колонке */
+    grid-row: 2; /* Размещаем во второй строке */
+    color: black;
+    margin: 0;
+    justify-self: end; /* Выравниваем текст по правому краю */
+}
+
+
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Промежуток между блоками */
+}
+
+.event-info-light {
+    flex: 1 1 calc(50% - 20px); /* Ширина блока 50% с учетом промежутка между блоками */
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+}
+h4{
+
+ width: 40%; /* Устанавливаем ширину блока на 50% */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.log{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ margin: 0;
+ padding: 10px;
+ box-sizing: border-box;
+ font-family: "Play", sans-serif;
+}
+
+.rel{
+position: relative;
+z-index: 4;
+}
+login-form {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+background: #ffffff;
+width: 100%;
+overflow: hidden;
+}
+
+
+.ring {
+position: relative;
+width: 500px;
+height: 500px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-clip: content-box;
+background-color: rgba(255, 255, 255, 0.605);
+
+}
+.ring i {
+position: absolute;
+inset: 0;
+border: 2px solid #000000;
+transition: 0.5s;
+}
+.ring i:nth-child(1) {
+border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+animation: animate 6s linear infinite;
+}
+.ring i:nth-child(2) {
+border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+animation: animate 4s linear infinite;
+}
+.ring i:nth-child(3) {
+border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+animation: animate2 10s linear infinite;
+}
+.ring:hover i {
+border: 6px solid var(--clr);
+filter: drop-shadow(0 0 20px var(--clr));
+}
+@keyframes animate {
+0% {
+transform: rotate(0deg);
+}
+100% {
+transform: rotate(360deg);
+}
+}
+@keyframes animate2 {
+0% {
+transform: rotate(360deg);
+}
+100% {
+transform: rotate(0deg);
+}
+}
+
+.login {
+position: absolute;
+width: 300px;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+
+.login h2 {
+font-size: 2em;
+color: #000000;
+}
+.login .inputBx {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px; /* Add margin-bottom for spacing */
+}
+
+.login .inputBx input {
+    width: calc(100% - 40px); /* Adjust input width to accommodate button */
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #000000;
+    border-radius: 40px;
+    font-size: 1.2em;
+    color: #000000;
+    box-shadow: none;
+    outline: none;
+}
+
+.login .inputBx input[type="submit"] {
+    width: calc(100% + 2px);
+    background: linear-gradient(45deg, #226F54, #fff172);
+    border: none;
+    cursor: pointer;
+}
+
+.login .inputBx input::placeholder {
+color: rgba(35, 34, 34, 0.75);
+}
+.login .links {
+position: relative;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 20px;
+}
+.login .links a {
+color: #000000;
+text-decoration: none;
+}
+
+
