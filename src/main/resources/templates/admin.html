@@ -2,16 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <title th:text="${title}">Event manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
+<img id="ellipse1" src="/images/Ellipse_1.svg" alt="SVG Image" >
+<div class="container rel">
+    <div class="big-header my-red" >
+        <h1 class="text-light">Панель администратора</h1>
+        <div class="line-container">
+            <div class="line bg-light" id="line1"></div>
+            <div class="line bg-light" id="line2"></div>
+            <div class="line bg-light" id="line3"></div>
+        </div>
+    </div>
 
-<div class="container">
-    <h4>Панель администратора</h4>
-    <table class="table table-bordered">
+    <table class="table light-green-block table-bordered mt-5">
         <thead class="thead-dark">
         <tr>
             <th>Имя</th>
@@ -33,37 +44,71 @@
             </td>
             <td>
                 <form th:action="'/admin/user/ban/' + ${user.id}" method="post">
-                    <button type="submit" class="btn btn-danger">Бан</button>
+                    <button type="submit" class="btn my-red text-light">Бан</button>
                 </form>
             </td>
-            <td><a th:href="'/admin/user/edit/' + ${user.id}" class="btn btn-primary">Редактирование</a></td>
-            <td><a th:href="'/user/' + ${user.id}" class="btn btn-info">Подробная информация</a></td>
+            <td><a th:href="'/admin/user/edit/' + ${user.id}" class="btn bright-green text-light">Редактирование</a></td>
+            <td><a th:href="'/user/' + ${user.id}" class="btn bright-yellow">Подробная информация</a></td>
         </tr>
         <tr th:if="${#lists.isEmpty(users)}">
             <td colspan="7"><h3>Пользователей нет</h3></td>
         </tr>
         </tbody>
-    </table>
+    </table><br><br>
 
-    <h1>Создание локации</h1>
-    <form action="/admin/add/location" method="post">
-        <input type="text" name="name" placeholder="Введите название локации" class="form-control"><br>
-        <input type="text" name="address" placeholder="Введите адрес локации" class="form-control"><br>
-        <input type="text" name="description" placeholder="Опишите локацию" class="form-control"><br>
-        <input type="number" name="capacity" placeholder="Максимальное количество людей" class="form-control"><br>
 
-        <button type="submit" class="btn btn-success">Добавить локацию</button>
-    </form>
 
-    <h1>Создание типа событий</h1>
-    <form action="/admin/add/event-type" method="post">
-        <input type="text" name="name" placeholder="Введите тип события" class="form-control"><br>
 
-        <button type="submit" class="btn btn-success">Добавить тип события</button>
-    </form>
+    <div class="row mt-2">
+        <div class="col-md-7">
+            <div class="big-header bright-yellow">
+                <h1 class="text-dark">Создание локации</h1>
+                <div class="line-container">
+                    <div class="line bg-dark" id="line1"></div>
+                    <div class="line bg-dark" id="line2"></div>
+                    <div class="line bg-dark" id="line3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <form action="/admin/add/location" method="post">
+                <input type="text" name="name" placeholder="Введите название локации" class="form-control light-green-block"><br>
+                <input type="text" name="address" placeholder="Введите адрес локации" class="form-control light-green-block border"><br>
+                <input type="text" name="description" placeholder="Опишите локацию" class="form-control light-green-block border"><br>
+                <input type="number" name="capacity" placeholder="Максимальное количество людей" class="form-control light-green-block"><br>
+                <button type="submit" class="btn bright-yellow">Добавить локацию</button><br><br>
+            </form>
+        </div>
+    </div><br><br>
+    <div class="row">
+
+        <div class="col-md-6 mt-5">
+            <form action="/admin/add/event-type" method="post">
+                <input type="text" name="name" placeholder="Введите тип события" class="form-control light-yellow-block"><br>
+
+                <button type="submit" class="btn bright-yellow">Добавить тип события</button><br><br>
+            </form>
+        </div>
+        <div class="col-md-6 mt-2">
+            <div class="big-header bright-yellow">
+                <h1 class="text-dark">Создание типа событий</h1>
+                <div class="line-container">
+                    <div class="line bg-dark" id="line1"></div>
+                    <div class="line bg-dark" id="line2"></div>
+                    <div class="line bg-dark" id="line3"></div>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
 </div>
+
+
+
+
 
 
 <footer th:insert="blocks/footer :: footer"></footer>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </html>
