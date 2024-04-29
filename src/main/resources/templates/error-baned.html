@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="html-error">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .error-message {
-            margin-top: 50px;
-            font-size: 24px;
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="/main.css">
+
 </head>
 <body>
 <h1>Error Page</h1>
-<p class="error-message">Вы забанены и не можете создавать события. Умаслите админа</p>
+<p class="error-message"></p>
+</body>
+<body class="body-error">
+<div id="error" class="error-banned">
+    <div id="box"></div>
+    <h3>Ошибка</h3>
+    <p>Вы <span class="ban">забанены</span> и не можете создавать события.</p>
+    <p class="error-message">Умаслите админа</p>
+</div>
+
 </body>
 </html>

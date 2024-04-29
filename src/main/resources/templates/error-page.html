@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="html-error">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .error-message {
-            margin-top: 50px;
-            font-size: 24px;
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="/main.css">
+
 </head>
-<body>
-<h1>Error Page</h1>
-<p class="error-message">The location or event type was not found. Please try again.</p>
+<body class="body-error">
+<div id="error" class="error-not-found">
+    <div id="box"></div>
+    <h3>Ошибка</h3>
+    <p>Местоположение или тип мероприятия <span class="not-found">не найдены</span>.</p>
+    <p class="error-message">Пожалуйста, попробуйте еще раз.</p>
+</div>
+
 </body>
 </html>
