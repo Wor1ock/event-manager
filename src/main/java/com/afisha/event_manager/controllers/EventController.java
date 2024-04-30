@@ -2,8 +2,6 @@ package com.afisha.event_manager.controllers;
 
 import com.afisha.event_manager.models.*;
 import com.afisha.event_manager.repositories.EventRepository;
-import com.afisha.event_manager.repositories.LocationRepository;
-import com.afisha.event_manager.repositories.EventTypeRepository;
 import com.afisha.event_manager.repositories.ParticipationRepository;
 import com.afisha.event_manager.services.EventService;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor

@@ -33,7 +33,6 @@ public class SecurityConfig {
                         .requestMatchers("/events/**")
                         .hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
                         .anyRequest().authenticated()
-//                        .requestMatchers(HttpMethod.OPTIONS).permitAll()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")

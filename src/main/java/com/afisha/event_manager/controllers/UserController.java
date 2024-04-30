@@ -5,8 +5,6 @@ import com.afisha.event_manager.models.EventType;
 import com.afisha.event_manager.models.Location;
 import com.afisha.event_manager.models.User;
 import com.afisha.event_manager.repositories.EventRepository;
-import com.afisha.event_manager.repositories.EventTypeRepository;
-import com.afisha.event_manager.repositories.LocationRepository;
 import com.afisha.event_manager.repositories.ParticipationRepository;
 import com.afisha.event_manager.services.EventService;
 import com.afisha.event_manager.services.UserService;
