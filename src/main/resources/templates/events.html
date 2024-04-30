@@ -11,7 +11,7 @@
 <body>
 
 
-<header th:insert="blocks/header :: header"></header>
+<header th:insert="~{blocks/header :: header}"></header>
 
 <div class="container mt-5">
     <img id="ellipse1" src="/images/Ellipse_1.svg" alt="SVG Image" >
@@ -57,7 +57,8 @@
 
 
     </div>
-    <footer th:insert="blocks/footer :: footer"></footer>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+
 
 </body>
 

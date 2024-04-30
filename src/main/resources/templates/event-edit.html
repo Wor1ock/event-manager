@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<header th:insert="blocks/header :: header"></header>
+<header th:insert="~{blocks/header :: header}"></header>
 <img id="ellipse1" src="/images/Ellipse_1.svg" alt="SVG Image" >
 <div class="container my-5">
 
@@ -61,7 +61,8 @@
 </div>
 
 
-<footer th:insert="blocks/footer :: footer"></footer>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+
 
 <script>
 
