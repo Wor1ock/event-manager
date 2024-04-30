@@ -4,6 +4,7 @@ import com.afisha.event_manager.models.User;
 import com.afisha.event_manager.models.enums.Role;
 import com.afisha.event_manager.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class AdminController {
+    @Autowired
     private final UserService userService;
 
     @GetMapping("/admin")
