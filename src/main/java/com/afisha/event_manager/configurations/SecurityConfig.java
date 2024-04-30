@@ -29,7 +29,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/events", "/registration", "/css/**").permitAll()
+                        .requestMatchers("/registration", "/css/**").permitAll()
                         .requestMatchers("/events/**")
                         .hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
                         .anyRequest().authenticated()
