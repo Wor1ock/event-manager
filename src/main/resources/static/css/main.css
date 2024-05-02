@@ -22,9 +22,8 @@ body {
 .navbar {
     position: relative;
     z-index: 3;
-    font-size:35px;
+    font-size:2.3vw;
 }
-
 .top-menu li a::after{
     content: '';
     display: block;
@@ -41,13 +40,13 @@ body {
 
 .slogan{
     display: block;
-    font-size: 2vh;
+    font-size: 1vw;
     text-align: center;
-    margin-top: -5px;
+    margin-top: -0.25vw;
 }
 .brand-name {
     display: inline;
-    font-size:8.75vh;
+    font-size:4.4vw;
 }
 .navbar-brand {
     display: flex;
@@ -68,12 +67,12 @@ body {
     border-radius:1vh;
 }
 img{
-    max-width: 90%;
+    max-width: 80%;
 }
 #ellipse1{
     position: fixed;
-    top: 0px;
-    right: 0px;
+    top: 0vh;
+    right: 0vh;
     z-index: 0;
     overflow: hidden
 }
@@ -114,8 +113,6 @@ img{
     height: 17vw;
     border-radius: 2vw;
     box-shadow: 0px 15px 20px rgba(0,0,0,0.5);
-    /*margin-left:-5vw;
-    /* margin-top:5vw;*/
 }
 h1{
     font-size: 4vw;
@@ -127,8 +124,8 @@ h1{
     justify-content:center;
 }
 .line-container {
-    margin-bottom: 1vw; /* Отступ между надписью и линиями */
-    margin-top: 1vw; /* Отступ между надписью и линиями */
+    margin-bottom: 1vw;
+    margin-top: 1vw;
 }
 .line {
     width: 100%; /* Ширина линии */
@@ -136,15 +133,13 @@ h1{
     background-color: rgb(255, 255, 255);
     margin-bottom: 0.8vw; /* Отступ между линиями */
 }
-#line1 {
+.line1 {
     width: 95%;
 }
-
-#line2 {
+.line2 {
     width: 70%;
 }
-
-#line3 {
+.line3 {
     width: 45%;
 }
 
@@ -246,8 +241,8 @@ h1{
 /* Лягушка с главного экрана*/
 .toad {
   width: 22vw;
-  margin-left: 15vw;
-  height: auto; /* Автоматически подстраивает высоту, сохраняя пропорции */
+    /*margin-left: 15vw;*/
+    height: auto; /* Автоматически подстраивает высоту, сохраняя пропорции */
   z-index: 2;
   transform: scaleX(-1) ;
 }
@@ -328,9 +323,7 @@ form button[type="submit"] {
     padding: 20px;
     border-radius: 10px;
 }
-h4{
- width: 40%;
-}
+
 
 
 /* Стили и анимации для авторизации и регистрации */
@@ -363,8 +356,7 @@ height: 700px;
 display: flex;
 justify-content: center;
 align-items: center;
-background-clip: content-box;
-background-color: rgba(255, 255, 255, 0.605);
+
 
 }
 .ring i {

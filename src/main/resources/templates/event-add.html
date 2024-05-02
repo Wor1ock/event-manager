@@ -24,11 +24,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 mt-3">
             <form id="eventForm" action="/events/add" method="post">
                 <input type="text" maxlength="45" name="name" placeholder="Введите название события" class="form-control light-yellow-block border-0"><br>
                 <input type="datetime-local" name="startDateTime" placeholder="Начало события" class="form-control border-0"><br>
-
                 <select id="location_id" name="location_id" class="form-control border-0">
                     <option value="">Выберите локацию</option>
                     <th:block th:each="loc : ${locations}">

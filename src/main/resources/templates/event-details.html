@@ -14,22 +14,22 @@
 <div class="container mt-3">
     <img id="ellipse1" src="/images/Ellipse_1.svg" alt="SVG Image" >
     <div class="row ">
-        <div class="col-md-7 mt-5">
+        <div class="col-lg-7  col-sm-12 mt-5">
             <div class="big-header bright-yellow profile-header-container" >
                 <div  class="text-break" th:each="el : ${event}">
                     <h1 class="text-dark" th:text="${el.name}"></h1>
                     </div>
             </div>
-        </div>
-        <div class="col-md-5 alert light-yellow-block rel">
+        </div><br>
+        <div class=" col-lg-5 col-sm-12 mt-4 alert light-yellow-block rel">
             <div th:each="el : ${event}" class="alert ">
                 <h2 class="text-dark ">Описание</h2>
                 <p class="desc text-dark light-green-block text-break fs-5" th:text="${el.description}"></p>
                 <h2 class="text-dark">Когда будет проходить?</h2>
                 <p class="alert light-green-block fs-5" th:text="${#temporals.format(el.startDateTime, 'd MMMM yyyy HH:mm', new java.util.Locale('ru'))}"></p>
                 <h2 class="text-dark">Ждем вас по адресу:</h2>
-                <p class="alert light-green-block fs-5" th:text="${el.location.name}"></p>
-                <p>Организатор мероприятия: <a th:href="'/user/' + ${el.user.id}" class="text-dark" th:text="${el.user.getName()}"></a></p>
+                <p class="alert light-green-block text-break fs-5" th:text="${el.location.name}"></p>
+                <p>Организатор мероприятия: <a th:href="'/user/' + ${el.user.id}" class="text-dark text-break" th:text="${el.user.getName()}"></a></p>
 
                 <th:block th:if="${el.user.id} == ${current_user.id}">
                     <a th:href="'/events/' + ${el.id} + '/edit'" class="btn bright-yellow ">Редактировать</a>

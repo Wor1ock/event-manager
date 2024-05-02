@@ -13,32 +13,30 @@
 
 <div class="container mt-5">
     <img id="ellipse1" src="/images/Ellipse_1.svg" alt="SVG Image" >
-    <!--<img id="ellipse2" src="/images/Ellipse 2.svg" alt="SVG Image" >-->
+
     <div class="row">
-        <div class="col-md-7">
+        <div class=" col-md-12 col-lg-7">
             <div class="big-header bright-yellow " >
-                <h1 class="text-dark">Информация о пользователе</h1>
+                <h1 class="text-dark text-break">Информация о пользователе</h1>
 
             </div>
         </div>
-        <div class="col-md-5">
-            <p th:text="'Имя: ' + ${user.name}" class="rel alert light-yellow-block text-dark fs-4"></p>
-            <p th:text="'Email: ' + ${user.email}" class="rel alert light-yellow-block text-dark fs-4"></p>
+        <div class="col-md-12 col-lg-5 mt-4">
+            <p th:text="'Имя: ' + ${user.name}" class="rel alert light-yellow-block text-dark text-break  fs-4"></p>
+            <p th:text="'Email: ' + ${user.email}" class="rel alert light-yellow-block text-dark text-break  fs-4"></p>
 
         </div>
     </div>
 
-
-
-    <h4 class="alert mt-5 light-green-block rel text-light">Все события пользователя:</h4>
+    <h4 class="alert mt-5 col-md-12 col-lg-5 light-green-block rel text-break text-light">Все события пользователя:</h4>
     <div th:if="${#lists.isEmpty(events)}">
-        <p>Событий нет</p>
+        <p class="rel w-25 text-center border text-break border-black bg-white fw-medium rounded">Событий нет</p>
     </div>
 
     <div th:unless="${#lists.isEmpty(events)}" class="event-container">
         <div th:each="el : ${events}" class="alert alert-light mt-2 event-info-light">
             <a th:href="'/events/' + ${el.id}" class="text-decoration-none text-dark">
-                <h3 class="event-name" th:text="${el.name}"></h3>
+                <h3 class="event-name text-break" th:text="${el.name}"></h3>
             </a>
             <p class="type-name" th:text="${el.type.name}"></p>
             <p class="start-date" th:text="${#temporals.format(el.startDateTime, 'd MMMM', new java.util.Locale('ru'))}"></p>

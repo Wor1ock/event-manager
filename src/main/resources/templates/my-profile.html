@@ -14,19 +14,19 @@
 <div class="container mt-5">
     <img id="ellipse1" src="/images/Ellipse_1.svg" alt="SVG Image" >
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-12">
             <div class="big-header bright-yellow profile-header-container" >
                 <h1 class="text-dark">Личный кабинет</h1>
                 <div class="line-container">
-                    <div class="line bg-dark" id="line1"></div>
-                    <div class="line bg-dark" id="line2"></div>
-                    <div class="line bg-dark" id="line3"></div>
+                    <div class="line bg-dark line1" ></div>
+                    <div class="line bg-dark line2" ></div>
+                    <div class="line bg-dark line3" ></div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-4">
-            <p th:text="'Имя: ' + ${current_user.getName()}" class="rel alert light-yellow-block text-dark fs-4"></p>
-            <p th:text="'Email: ' + ${current_user.email}" class="rel alert light-yellow-block text-dark fs-4"></p>
+        <div class=" col-md-12 col-lg-4 mt-4">
+            <p th:text="'Имя: ' + ${current_user.getName()}" class="rel alert light-yellow-block text-dark text-break  fs-4"></p>
+            <p th:text="'Email: ' + ${current_user.email}" class="rel alert light-yellow-block text-dark text-break fs-4"></p>
             <div class="end" th:if="${current_user}">
                 <form action="/logout" method="post">
                     <input class="rel text-dark border-0 rounding bright-yellow fs-5" type="submit"  value="Выйти из аккаунта"/>
@@ -37,15 +37,15 @@
 
 
     <!-- Показывать события, если список событий не пуст, иначе выводить "Событий нет" -->
-    <h4 class="alert mt-5 light-green-block rel text-light">Организуемые мной события:</h4>
+    <h4 class="alert mt-5 col-md-12 col-lg-5 light-green-block rel text-light">Организуемые мной события:</h4>
     <div th:if="${#lists.isEmpty(myEvents)}">
-        <p>Событий нет</p>
+        <p class="rel w-25 text-center border border-black bg-white fw-medium rounded">Событий нет</p>
     </div>
 
     <div th:unless="${#lists.isEmpty(myEvents)}" class="event-container">
         <div th:each="el : ${myEvents}" class="alert alert-light mt-2 event-info-light">
             <a th:href="'/events/' + ${el.id}" class="text-decoration-none text-dark">
-                <h3 class="event-name" th:text="${el.name}"></h3>
+                <h3 class="event-name text-break" th:text="${el.name}"></h3>
             </a>
             <p class="type-name" th:text="${el.type.name}"></p>
             <p class="start-date" th:text="${#temporals.format(el.startDateTime, 'd MMMM', new java.util.Locale('ru'))}"></p>
@@ -54,9 +54,9 @@
     </div>
 
     <!-- Показывать события, если список событий не пуст, иначе выводить "Событий нет" -->
-    <h4 class="alert  light-green-block rel text-light">События, на которые я пойду:</h4>
+    <h4 class="alert col-md-12 col-lg-5 light-green-block rel text-light">События, на которые я пойду:</h4>
     <div th:if="${#lists.isEmpty(followedEvents)}">
-        <p>Событий нет</p>
+        <p class="rel w-25 text-center border border-black bg-white fw-medium rounded">Событий нет</p>
     </div>
 
     <div th:unless="${#lists.isEmpty(followedEvents)}" class="event-container">
